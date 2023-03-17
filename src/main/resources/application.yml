@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5434/taxi
+    username: kegisa
+    password: pgpass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: validate
+    properties.hibernate:
+      show_sql: true
+      format_sql: true
+
+coordinate:
+  start-longitude: 50.189683
+  start-latitude: 53.222579
+  finish-longitude: 50.102834
+  finish-latitude: 53.199131
+
+yandex:
+  url: https://taxi-routeinfo.taxi.yandex.net/taxi_info
+  clid: ${YANDEX_CLID:ak230324}
+  apiKey: ${YANDEX_APIKEY:BdytauIhxObTowGvvHnSePDZMUwgtAdW}
+
+management:
+  endpoints.web.exposure.include: 'prometheus, health'
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
